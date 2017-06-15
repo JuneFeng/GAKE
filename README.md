@@ -14,6 +14,10 @@ The data format is:
 + entity_to_id.txt: all entities and corresponding ids, one per line
 + relation_to_id.txt: all relations and corresponding ids, one per line
 
+Code
+=========
+We refer to the implement code of CBOW model published by Google.[[code]](https://aclweb.org/anthology/C/C16/C16-1062.pdf)
+
 Compile
 =========
 Just type "make" in the corresponding folder.
@@ -21,14 +25,16 @@ Just type "make" in the corresponding folder.
 Train
 ========
 For training, you need to type "./main" in the corresponding folder.
+
 The output of the model will be saved in folder result/.
 
 Cite
 =========
 If you use the code, pleasee cite the following paper:
-[Feng et al. 2016] Jun Feng, Minlie Huang, Yang Yang, and Xiaoyan Zhu. GAKE: Graph Aware Knowledge Embedding. In COLING2016.
+[Feng et al. 2016] Jun Feng, Minlie Huang, Yang Yang, and Xiaoyan Zhu. GAKE: Graph Aware Knowledge Embedding. In COLING2016. [[pdf]](https://aclweb.org/anthology/C/C16/C16-1062.pdf)
 
 Reference
 =========
 [Borders et al. 2013] Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran. Translating Embedding for Modeling Multi-Relational Data.
+
 https://code.google.com/archive/p/word2vec/
