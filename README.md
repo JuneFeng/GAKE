@@ -16,7 +16,7 @@ The data format is:
 
 Code
 =========
-We refer to the implement code of CBOW model published by Google.[[code]](https://aclweb.org/anthology/C/C16/C16-1062.pdf)
+We refer to the implement code of CBOW model published by Google.[[code]](https://code.google.com/archive/p/word2vec/)
 
 Compile
 =========
