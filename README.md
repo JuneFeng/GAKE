@@ -5,7 +5,7 @@ Knowledge Graph Embedding projects triples in a given knowledge graph to d-dimen
 
 DataSets
 =========
-We provide FB15K in data folder. The data is originally released by the paper "Translating Embeddings for Modeling Multi-relational Data". [[Download]](ttps://everest.hds.utc.fr/doku.php?id=en:transe)
+We provide FB15K in data folder. The data is originally released by the paper "Translating Embeddings for Modeling Multi-relational Data". [[Download]](https://everest.hds.utc.fr/doku.php?id=en:transe)
 
 The data format is:
 + train.txt: training data, format(entity1, relation, entity2)
@@ -35,6 +35,6 @@ If you use the code, pleasee cite the following paper:
 
 Reference
 =========
-[Borders et al. 2013] Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran. Translating Embedding for Modeling Multi-Relational Data.
+[1] [Borders et al. 2013] Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran. Translating Embedding for Modeling Multi-Relational Data.
 
-https://code.google.com/archive/p/word2vec/
+[2] https://code.google.com/archive/p/word2vec/
