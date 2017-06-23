@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=-pthread
-SOURCES=main.cpp common.cpp CBOWPath.cpp TripleClassification.cpp numeric.cpp ¡ÆGenerateContext.txt
+SOURCES=main.cpp common.cpp CBOWPath.cpp TripleClassification.cpp numeric.cpp GenerateContext.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
 
