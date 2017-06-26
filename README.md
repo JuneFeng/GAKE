@@ -24,9 +24,22 @@ Just type "make" in the corresponding folder.
 
 Train
 ========
-For training, you need to type "./main" in the corresponding folder.
+For training, you need to type "./main [dim] [window] [alpha] [loopNum] [attentionLabel] [pathContextNum] [edgeContextNum] [edgeNum] [pathRate] [edgeRate]" in the corresponding folder.
 
 The output of the model will be saved in folder result/.
+
+Parameter Setting:
+
++dim: the dimension of embedding vectors
++window: the length of path context
++alpha: learning rate
++loopNum: training iteration number
++attentionLabel: use the attention mechanism or not
++pathContextNum: path context number
++edgeContextNum: edge context number
++edgeNum: the number of chosen edges for each entity
++pathRate: the prestige of path context
++edgeRate: the prestige of edge context
 
 Cite
 =========
