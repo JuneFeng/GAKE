@@ -163,19 +163,17 @@ void ReadKnowledgeFile(string fileName, string filePath)
 
 int main(int argc, const char * argv[]) {
 
-    dataSource = argv[1];
-    method = argv[2];
-    dim = GetIntNum(argv[3]);
-    window = GetIntNum(argv[4]);
-    alpha = GetDoubleNum(argv[5]);
-    loopNum = GetIntNum(argv[6]);
-    pathPairNum = GetIntNum(argv[7]);
-    pathContext = GetDoubleNum(argv[8]);
-    neighborContext = GetDoubleNum(argv[9]);
-    //0:no attention 1:attention with position
-    attentionLabel = GetIntNum(argv[10]);
-    neighborNum = GetIntNum(argv[11]);
-    neighborPairNum = GetIntNum(argv[12]);
+    dim = GetIntNum(argv[1]);
+    window = GetIntNum(argv[2]);
+    alpha = GetDoubleNum(argv[3]);
+    loopNum = GetIntNum(argv[4]);
+    //0:no attention 1:attention
+    attentionLabel = GetIntNum(argv[5]);
+    pathContextNum = GetIntNum(argv[6]);
+    edgeContextNum = GetIntNum(argv[7]);
+    edgeNum = GetIntNum(argv[8]);
+    pathRate = GetDoubleNum(argv[9]);
+    edgeRate = GetDoubleNum(argv[10]);
     
     starting_alpha = alpha;
     
@@ -188,7 +186,7 @@ int main(int argc, const char * argv[]) {
     string tripleResult = outProcessFile + "result_TripleClassification";
     string pathString = outProcessFile + "path";
     string neighborString = outProcessFile + "neighbor";
-    for (int i = 1; i < 13; i ++)
+    for (int i = 1; i < 11; i ++)
     {
         outFile = outFile + "_" + argv[i];
         embeddingResult = embeddingResult + "_" + argv[i];
@@ -198,34 +196,31 @@ int main(int argc, const char * argv[]) {
         pathString = pathString + "_" + argv[i];
         neighborString = neighborString + "_" + argv[i];
     }
-    printf("%s\n", outFile.c_str());
+    ("%s\n", outFile.c_str());
     string pathFile = outProcessFile + "path.txt";
 
     clock_t start, end;
     start = clock();
     printf("start\n");
-    if (strcmp(method.c_str(), "random") == 0)
+    GenerateContext::GetContext(pathString, neighborString);
+    printf("max path length = %d\n", maxPathLen);
+    
+    for (int i = 0; i < nodeNum; i ++)
+        nodes.push_back(NodeInfo(0, NULL, 0, (int *)calloc(MAX_CODE_LENGTH, sizeof(int)), (char *)calloc(MAX_CODE_LENGTH, sizeof(char))));
+    for (int i = 0; i < paths.size(); i ++)
     {
-        GenerateContext::GetContext(pathString, neighborString);
-        printf("max path length = %d\n", maxPathLen);
-        
-        for (int i = 0; i < nodeNum; i ++)
-            nodes.push_back(NodeInfo(0, NULL, 0, (int *)calloc(MAX_CODE_LENGTH, sizeof(int)), (char *)calloc(MAX_CODE_LENGTH, sizeof(char))));
-        for (int i = 0; i < paths.size(); i ++)
-        {
-            nodes[paths[i].centerNode].count ++;
-       }
-        for (int i = 0; i < nodeNum; i ++)
-            if (nodes[i].count == 0)
-                nodes[i].count = 1;
-        sort(nodes.begin(), nodes.end(), SortFunction);
-        
-        
-        trainPaths.clear();
-        for (int i = 0; i < paths.size(); i ++)
-            trainPaths.push_back(paths[i]);
-        CBOWPath::TrainCBOW(embeddingResult, outFile, 5);
+        nodes[paths[i].centerNode].count ++;
     }
+    for (int i = 0; i < nodeNum; i ++)
+        if (nodes[i].count == 0)
+            nodes[i].count = 1;
+    sort(nodes.begin(), nodes.end(), SortFunction);
+    
+    
+    trainPaths.clear();
+    for (int i = 0; i < paths.size(); i ++)
+        trainPaths.push_back(paths[i]);
+    CBOWPath::TrainCBOW(embeddingResult, outFile, 5);
     
     end=clock();
     cout<<"Run time: "<<(double)(end - start) / CLOCKS_PER_SEC<<"S"<<endl;

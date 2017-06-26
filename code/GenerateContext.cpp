@@ -19,7 +19,7 @@ namespace GenerateContext {
         {return lhs.second > rhs.second;}
     };
     
-    void GetTripleContext()
+    void GetNeighborContext()
     {
         paths.clear();
         
@@ -34,7 +34,7 @@ namespace GenerateContext {
         
     }
     
-    void GetNeighborContext(string neighborString)
+    void GetEdgeContext(string neighborString)
     {
         vector<set<int> > entityRelation;
         vector<vector<int> > relations;
@@ -57,24 +57,24 @@ namespace GenerateContext {
                 relations[i].push_back(*it);
         }
         
-        for (int ii = 0; ii < neighborPairNum; ii ++)
+        for (int ii = 0; ii < edgeContextNum; ii ++)
         {
             int i = rand() % entityNum;
             vector<int> p;
-            if (relations[i].size() < neighborNum)
+            if (relations[i].size() < edgeNum)
             {
                 continue;
 //                for (int j = 0; j < relations[i].size(); j ++)
 //                    p.push_back(relations[i][j]);
             }
             else {
-                for (int j = 0; j < neighborNum; j ++)
+                for (int j = 0; j < edgeNum; j ++)
                 {
                     int id = rand() % relations[i].size();
                     p.push_back(relations[i][id]);
                 }
             }
-            paths.push_back(PathInfo(i + relationNum, p, 2, neighborContext));
+            paths.push_back(PathInfo(i + relationNum, p, 2, edgeRate));
             if (p.size() > maxPathLen)
                 maxPathLen = p.size();
         }
@@ -88,7 +88,7 @@ namespace GenerateContext {
             tmp.clear();
             testPathPair[make_pair(testData[i].head + relationNum, testData[i].tail + relationNum)] = tmp;
         }
-        for (int id = 0; id < pathPairNum; id ++)
+        for (int id = 0; id < pathContextNum; id ++)
         {
             int l = rand() % (window - 1) + 2; // l from 2 to window
             int st = rand() % entityNum + relationNum;
@@ -111,7 +111,7 @@ namespace GenerateContext {
             vector<int> pa;
             for (int j = 0; j < len - 1; j ++)
                 pa.push_back(p[j]);
-            paths.push_back(PathInfo(p[len - 1], pa, 1, pathContext));
+            paths.push_back(PathInfo(p[len - 1], pa, 1, pathRate));
             if (len - 1 > maxPathLen)
                 maxPathLen = len - 1;
             
@@ -125,16 +125,15 @@ namespace GenerateContext {
    
     void GetContext(string pathString, string neighborString)
     {
-        GetTripleContext();
+        GetNeighborContext();
         srand((unsigned)time(NULL));
         
-        if (pathContext > 0)
+        if (pathRate > 0)
         {
-            if (strcmp(method.c_str(), "random") == 0)
-                GetRandomPathContext(pathString);
+            GetRandomPathContext(pathString);
         }
-        if (neighborContext > 0)
-            GetNeighborContext(neighborString);
+        if (edgeRate > 0)
+            GetEdgeContext(neighborString);
     }
 }
 

@@ -11,8 +11,12 @@
 double headTimes = 1000000000;
 double relationTimes = 100000;
 
+/*
 string dataSourcePath = "../data/";
 string outProcessFile = "result/";
+*/
+string dataSourcePath = "/home/fengjun/NetworkEmbedding/Data/";
+string outProcessFile = "/home/fengjun/NetworkEmbedding/githubCode/Result/";
 
 string dataSource = "fb15k";
 string experiment = "TripleClassification";
@@ -75,17 +79,16 @@ int sampling_number = 5;
 double alpha = 0.25;
 double starting_alpha;
 int negative = 0;
-string method;
-string testMethod;
+
 int threadSize;
 int threadNum = 5;
 int softmax = 0;
 int attentionLabel = 1;
-int pathPairNum = 100;
-int neighborPairNum = 100;
-double pathContext = 0;
-double neighborContext = 0;
-int neighborNum = 0;
+int pathContextNum = 100;
+int edgeContextNum = 100;
+double pathRate = 0;
+double edgeRate = 0;
+int edgeNum = 0;
 
 
 int maxPathLen = 0;

@@ -216,18 +216,12 @@ double CountTmpScore(int bestOrNot, int type, int centerNode, int cX, int cY, in
     targetNode.push_back(centerNode);
     pathConf.push_back(1);
     
-    
-    if (strcmp(method.c_str(), "random") == 0)
+    for (int i = 0; i < testPathPair[make_pair(cX, centerNode)].size(); i ++)
     {
-        if (testPathPair[make_pair(cX, centerNode)].size() != 0 && label == -1)
-            printf("%d %d\n", label, testPathPair[make_pair(cX, centerNode)].size());
-        for (int i = 0; i < testPathPair[make_pair(cX, centerNode)].size(); i ++)
-        {
-            int tmp = testPathPair[make_pair(cX, centerNode)][i];
-            ps.push_back(paths[tmp].path);
-            targetNode.push_back(paths[tmp].centerNode);
-            pathConf.push_back(paths[tmp].confidence);
-        }
+        int tmp = testPathPair[make_pair(cX, centerNode)][i];
+        ps.push_back(paths[tmp].path);
+        targetNode.push_back(paths[tmp].centerNode);
+        pathConf.push_back(paths[tmp].confidence);
     }
     
     double firstTmp = 0;
