@@ -11,12 +11,9 @@
 double headTimes = 1000000000;
 double relationTimes = 100000;
 
-/*
+
 string dataSourcePath = "../data/";
 string outProcessFile = "result/";
-*/
-string dataSourcePath = "/home/fengjun/NetworkEmbedding/Data/";
-string outProcessFile = "/home/fengjun/NetworkEmbedding/githubCode/Result/";
 
 string dataSource = "fb15k";
 string experiment = "TripleClassification";
