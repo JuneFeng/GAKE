@@ -10,7 +10,7 @@
 
 namespace TripleClassification {
     
-    vector<Node> valid[15000];
+    vector<Node> valid[30000];
     vector<double> threadsholdR;
     
     
